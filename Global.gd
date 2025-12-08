@@ -6,3 +6,4 @@ var attack: int = 0
 var defend: int = 0
 var slide: int = 0
 var new: int = 0
+var read: int = 0
