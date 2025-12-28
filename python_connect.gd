@@ -39,6 +39,8 @@ func _move_x(direction):
 		Global.move_x = 1
 	elif direction == "derecha":
 		Global.move_x = 0
+	else:
+		Global.move_x = 2
 func _crouch():
 	print("Crouch")
 	Global.slide = 1
