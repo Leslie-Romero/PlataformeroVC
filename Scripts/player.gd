@@ -33,15 +33,15 @@ func _physics_process(delta):
 	if is_on_floor():
 		# Derecha
 		if Global.jump == 1: 
+			sprite.flip_h = true 
 			velocity.y = jumpHeight
 			velocity.x = maxSpeed * 0.8
-			sprite.flip_h = true 
 			Global.jump = 0
 		# Izquierda
 		elif Global.jump == 2:
+			sprite.flip_h = false
 			velocity.y = jumpHeight
 			velocity.x = -maxSpeed * 0.8
-			sprite.flip_h = false 
 			Global.jump = 0
 			
 		if friction:
