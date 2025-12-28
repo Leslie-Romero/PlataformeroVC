@@ -21,12 +21,12 @@ func _process(delta):
 		var parsed = json.parse(data)
 		if parsed == OK:
 			var json_data = json.data
-			if json_data["move_right"] == 1:
+			if json_data["jump"] != 0:
+				_jump(json_data["jump"])
+			elif json_data["move_right"] == 1:
 				_move_x("derecha")
 			elif json_data["move_left"] == 1:
 				_move_x("izquierda")
-			elif json_data["jump"] != 0:
-				_jump(json_data["jump"])
 			elif json_data["attack"] == 1:
 				_attack()
 			elif json_data["slide"] == 1:
@@ -45,8 +45,11 @@ func _slide():
 	print("Slide")
 	Global.slide = 1
 func _jump(jump_type):
-	print("Jump!")
 	Global.jump = jump_type
+	if jump_type == 1:
+		print("Jump right!")
+	elif jump_type == 2:
+		print("Jump left!")
 func _attack():
 	print("Shoot")
 	Global.attack = 1
