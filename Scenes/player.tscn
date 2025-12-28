@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cydscmvsqpxuy"]
+[gd_scene load_steps=8 format=3 uid="uid://cydscmvsqpxuy"]
 
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ip0xo"]
 [ext_resource type="Texture2D" uid="uid://8jcphs36nru2" path="res://Assets/Rocky Roads/Enemies/slime_red.png" id="1_vd1p8"]
 
 [sub_resource type="Animation" id="Animation_p54x3"]
@@ -57,9 +58,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eokqe"]
-size = Vector2(18, 12)
+size = Vector2(16, 10)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_ip0xo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
