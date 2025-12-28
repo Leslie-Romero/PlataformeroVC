@@ -35,9 +35,16 @@ func _process(delta):
  
 func _move_x(direction):
 	print("Moviendose hacia la ", direction)
+	if direction == "izquierda":
+		Global.move_x = 1
+	elif direction == "derecha":
+		Global.move_x = 0
 func _crouch():
 	print("Crouch")
+	Global.slide = 1
 func _jump():
 	print("Jump!")
+	Global.jump = 1
 func _shoot():
 	print("Shoot")
+	Global.attack = 1
