@@ -27,10 +27,10 @@ func _process(delta):
 				_move_x("izquierda")
 			elif json_data["jump"] == 1:
 				_jump()
-			elif json_data["shoot"] == 1:
-				_shoot()
-			elif json_data["crouch"] == 1:
-				_crouch()
+			elif json_data["attack"] == 1:
+				_attack()
+			elif json_data["slide"] == 1:
+				_slide()
 
  
 func _move_x(direction):
@@ -41,12 +41,12 @@ func _move_x(direction):
 		Global.move_x = 0
 	else:
 		Global.move_x = 2
-func _crouch():
-	print("Crouch")
+func _slide():
+	print("Slide")
 	Global.slide = 1
 func _jump():
 	print("Jump!")
 	Global.jump = 1
-func _shoot():
+func _attack():
 	print("Shoot")
 	Global.attack = 1
