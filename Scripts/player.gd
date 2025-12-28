@@ -18,21 +18,32 @@ func _physics_process(delta):
 		sprite.flip_h = true 
 		animationPlayer.play("Walk")
 		velocity.x = min(velocity.x + moveSpeed, maxSpeed)
+		Global.move_x = 2
 		
 	elif Global.move_x == 1:
 		sprite.flip_h = false 
 		animationPlayer.play("Walk")
 		velocity.x = max(velocity.x - moveSpeed, -maxSpeed)
+		Global.move_x = 2
 		
 	else:
 		animationPlayer.play("Idle")
 		friction = true
 	
 	if is_on_floor():
+		# Derecha
 		if Global.jump == 1: 
 			velocity.y = jumpHeight
+			velocity.x = maxSpeed * 0.8
+			sprite.flip_h = true 
 			Global.jump = 0
-		
+		# Izquierda
+		elif Global.jump == 2:
+			velocity.y = jumpHeight
+			velocity.x = -maxSpeed * 0.8
+			sprite.flip_h = false 
+			Global.jump = 0
+			
 		if friction:
 			velocity.x = lerp(velocity.x, 0.0, 0.2) 
 	else:
@@ -46,7 +57,7 @@ func _physics_process(delta):
 	
 	if Global.slide == 1:
 		print("Agachado")
-		#animationPlayer.play("Slide")
+		animationPlayer.play("Slide")
 		Global.slide = 0
 	
 	move_and_slide()
