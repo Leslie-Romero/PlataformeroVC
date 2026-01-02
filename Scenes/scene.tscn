@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5pjpcaii3e3n"]
+[gd_scene load_steps=15 format=3 uid="uid://5pjpcaii3e3n"]
 
 [ext_resource type="Script" path="res://python_connect.gd" id="1_sw7fx"]
 [ext_resource type="Texture2D" uid="uid://bom3v4q6bbe3r" path="res://Assets/Rocky Roads/Backgrounds/clouds.png" id="2_667ms"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://gnchkbovo2js" path="res://Assets/Rocky Roads/Deco/bush.png" id="6_xddiv"]
 [ext_resource type="Texture2D" uid="uid://c5ka4l4qpxvvi" path="res://Assets/Rocky Roads/Deco/tree_trunk.png" id="7_gch5u"]
 [ext_resource type="Texture2D" uid="uid://dfuwos4kia1wv" path="res://Assets/Rocky Roads/Deco/sun.png" id="8_a4uy3"]
+[ext_resource type="PackedScene" uid="uid://b44076iry7e" path="res://Scenes/coin.tscn" id="11_ptao8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4osom"]
 texture = ExtResource("8_a4uy3")
@@ -196,6 +197,7 @@ sources/0 = SubResource("TileSetAtlasSource_4osom")
 
 [node name="Mundo" type="Node2D"]
 script = ExtResource("1_sw7fx")
+metadata/_edit_horizontal_guides_ = [-325.0]
 
 [node name="Sky" type="Sprite2D" parent="."]
 position = Vector2(107.5, -149)
@@ -203,13 +205,13 @@ scale = Vector2(2.66016, 14.875)
 texture = ExtResource("2_gl2ew")
 
 [node name="Clouds" type="Sprite2D" parent="."]
-position = Vector2(-40, -16.5)
-scale = Vector2(1.52344, 1.77344)
+position = Vector2(-40, -18.0001)
+scale = Vector2(1.52344, 1.75)
 texture = ExtResource("2_667ms")
 
 [node name="Clouds2" type="Sprite2D" parent="."]
-position = Vector2(301, -16.5)
-scale = Vector2(1.17188, 1.80469)
+position = Vector2(301, -20.0001)
+scale = Vector2(1.17188, 1.75)
 texture = ExtResource("2_667ms")
 
 [node name="Rock" type="Sprite2D" parent="."]
@@ -246,3 +248,18 @@ position = Vector2(-38, -8)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
+
+[node name="Coin" parent="." instance=ExtResource("11_ptao8")]
+position = Vector2(-10, 8)
+
+[node name="Coin2" parent="." instance=ExtResource("11_ptao8")]
+position = Vector2(89, -9)
+
+[node name="Coin3" parent="." instance=ExtResource("11_ptao8")]
+position = Vector2(168, -9)
+
+[node name="Coin4" parent="." instance=ExtResource("11_ptao8")]
+position = Vector2(279, -25)
+
+[node name="Coin5" parent="." instance=ExtResource("11_ptao8")]
+position = Vector2(386, 7)
