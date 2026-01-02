@@ -46,7 +46,8 @@ _data = {
 
 [node name="Coin" type="Node2D"]
 
-[node name="Coin2D" type="Area2D" parent="."]
+[node name="Coin2D" type="Area2D" parent="." groups=["monedas"]]
+z_index = 1
 script = ExtResource("1_u34f8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coin2D"]

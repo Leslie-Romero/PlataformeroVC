@@ -1,9 +1,11 @@
 extends Area2D
 
+signal coinCollected
+
 func _ready():
 	$AnimationPlayer.play("coin")
 
-
 func _on_body_entered(body):
-	queue_free()
-	pass # Replace with function body.
+	if body.name == "Player": 
+		coinCollected.emit() 
+		queue_free()
