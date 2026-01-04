@@ -8,6 +8,11 @@ const gravity = 15
 @onready var sprite = $Sprite2D
 @onready var animationPlayer = $AnimationPlayer 
 
+func _ready():
+	# Si la variable global tiene datos, nos movemos ahí
+	if Global.checkpoint_pos != null:
+		global_position = Global.checkpoint_pos
+
 func _physics_process(delta):
 	velocity.y += gravity
 	var friction = false
@@ -66,3 +71,7 @@ func _physics_process(delta):
 				if layer_id != -1:
 					if data.get_custom_data_by_layer_id(layer_id) == true:
 						get_tree().reload_current_scene()
+						
+
+
+

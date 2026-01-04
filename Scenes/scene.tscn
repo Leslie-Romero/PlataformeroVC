@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://5pjpcaii3e3n"]
+[gd_scene load_steps=29 format=3 uid="uid://5pjpcaii3e3n"]
 
 [ext_resource type="Script" path="res://python_connect.gd" id="1_sw7fx"]
 [ext_resource type="Texture2D" uid="uid://bom3v4q6bbe3r" path="res://Assets/Rocky Roads/Backgrounds/clouds.png" id="2_667ms"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://djyryatqjwjbo" path="res://Assets/Rocky Roads/Objects/sign.png" id="15_mgaf7"]
 [ext_resource type="Script" path="res://Scripts/DeadZone.gd" id="16_f4anq"]
 [ext_resource type="Texture2D" uid="uid://cpfxd6odvl1nb" path="res://Assets/Rocky Roads/Enemies/spikes.png" id="17_oa0g4"]
+[ext_resource type="Script" path="res://Scenes/checkpoint.gd" id="18_1onks"]
+[ext_resource type="Texture2D" uid="uid://bq6h25mw3agwl" path="res://Assets/Rocky Roads/Objects/apple.png" id="19_4lnf7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4osom"]
 texture = ExtResource("8_a4uy3")
@@ -396,6 +398,9 @@ custom_data_layer_0/name = "mortal"
 custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_ys3x6")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6750f"]
+size = Vector2(14, 14)
+
 [node name="Mundo" type="Node2D"]
 script = ExtResource("1_sw7fx")
 metadata/_edit_horizontal_guides_ = [-325.0]
@@ -589,5 +594,41 @@ collision_animatable = true
 format = 2
 layer_0/tile_data = PackedInt32Array(65554, 65537, 0, -262088, 131073, 0, -262083, 131073, 0, -262037, 65537, 0, 131065, 131073, 0, 65536, 131073, 0, -524245, 131073, 0)
 
+[node name="Checkpoint" type="Area2D" parent="."]
+position = Vector2(354, 25)
+script = ExtResource("18_1onks")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoint"]
+texture = ExtResource("19_4lnf7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_6750f")
+
+[node name="Checkpoint3" type="Area2D" parent="."]
+position = Vector2(226, -39)
+script = ExtResource("18_1onks")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoint3"]
+texture = ExtResource("19_4lnf7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint3"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_6750f")
+
+[node name="Checkpoint2" type="Area2D" parent="."]
+position = Vector2(568, -135)
+script = ExtResource("18_1onks")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoint2"]
+texture = ExtResource("19_4lnf7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_6750f")
+
 [connection signal="body_entered" from="fall" to="fall" method="_on_body_entered"]
 [connection signal="body_entered" from="spikes" to="Player" method="_on_spikes_body_entered"]
+[connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint3" to="Checkpoint3" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint2" to="Checkpoint2" method="_on_body_entered"]
