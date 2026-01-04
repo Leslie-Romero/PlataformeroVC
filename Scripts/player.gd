@@ -17,18 +17,28 @@ func _physics_process(delta):
 	velocity.y += gravity
 	var friction = false
 	
+	if Global.slide == 1:
+		animationPlayer.stop()
+		animationPlayer.play("Slide")
+		Global.slide = 0
+
+	var is_sliding = animationPlayer.is_playing() and animationPlayer.current_animation == "Slide"
+	
 	if Global.move_x == 0:
 		sprite.flip_h = true 
-		animationPlayer.play("Walk")
+		if not is_sliding:
+			animationPlayer.play("Walk")
 		velocity.x = min(velocity.x + moveSpeed, maxSpeed)
 		Global.move_x = 2
 	elif Global.move_x == 1:
 		sprite.flip_h = false 
-		animationPlayer.play("Walk")
+		if not is_sliding:
+			animationPlayer.play("Walk")
 		velocity.x = max(velocity.x - moveSpeed, -maxSpeed)
 		Global.move_x = 2
 	else:
-		animationPlayer.play("Idle")
+		if not is_sliding:
+			animationPlayer.play("Idle")
 		friction = true
 	
 	if is_on_floor():
@@ -42,21 +52,15 @@ func _physics_process(delta):
 			velocity.y = jumpHeight
 			velocity.x = -maxSpeed * 1.5
 			Global.jump = 0
+			
 		if friction:
 			velocity.x = lerp(velocity.x, 0.0, 0.2) 
 	else:
 		if friction:
-			velocity.x = lerp(velocity.x, 0.0, 0.05) 
+			velocity.x = lerp(velocity.x, 0.0, 0.01) 
 	
 	if Global.attack == 1:
-		print("Atacando")
 		Global.attack = 0
-	
-	if Global.slide == 1:
-		print("Agachado")
-		animationPlayer.play("Slide")
-		Global.slide = 0
-	
 	
 	move_and_slide()
 
@@ -71,7 +75,3 @@ func _physics_process(delta):
 				if layer_id != -1:
 					if data.get_custom_data_by_layer_id(layer_id) == true:
 						get_tree().reload_current_scene()
-						
-
-
-
