@@ -61,3 +61,8 @@ func _physics_process(delta):
 		Global.slide = 0
 	
 	move_and_slide()
+
+
+func _on_spikes_body_entered(body):
+	if body.get_name() == "Player":
+		get_tree().reload_current_scene()
