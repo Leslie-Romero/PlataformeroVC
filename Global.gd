@@ -5,6 +5,6 @@ var jump: int = 0
 var attack: int = 0
 var defend: int = 0
 var slide: int = 0
-
-# Usamos null para saber si es la primera vez que jugamos
+var total_coins = 0
+var collected_coins = []
 var checkpoint_pos = null	

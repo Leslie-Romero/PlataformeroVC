@@ -11,10 +11,8 @@ func _ready():
 		print("Godot escuchando en puerto 6005...")
  
 func _process(delta):
-	# Aceptar nuevos emisores de datos
 	server.poll()
  
-	# Obtener una lista de todas las conexiones UDP
 	while server.is_connection_available():
 		var peer = server.take_connection()
 		var data = peer.get_packet().get_string_from_utf8()

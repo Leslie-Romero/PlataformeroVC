@@ -9,7 +9,6 @@ const gravity = 15
 @onready var animationPlayer = $AnimationPlayer 
 
 func _ready():
-	# Si la variable global tiene datos, nos movemos ahí
 	if Global.checkpoint_pos != null:
 		global_position = Global.checkpoint_pos
 
