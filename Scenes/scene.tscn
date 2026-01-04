@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://5pjpcaii3e3n"]
+[gd_scene load_steps=31 format=3 uid="uid://5pjpcaii3e3n"]
 
 [ext_resource type="Script" path="res://python_connect.gd" id="1_sw7fx"]
 [ext_resource type="Texture2D" uid="uid://bom3v4q6bbe3r" path="res://Assets/Rocky Roads/Backgrounds/clouds.png" id="2_667ms"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://cpfxd6odvl1nb" path="res://Assets/Rocky Roads/Enemies/spikes.png" id="17_oa0g4"]
 [ext_resource type="Script" path="res://Scenes/checkpoint.gd" id="18_1onks"]
 [ext_resource type="Texture2D" uid="uid://bq6h25mw3agwl" path="res://Assets/Rocky Roads/Objects/apple.png" id="19_4lnf7"]
+[ext_resource type="Texture2D" uid="uid://cya3hbkw7dhp6" path="res://Assets/Rocky Roads/Objects/banana.png" id="20_2h8ya"]
+[ext_resource type="Script" path="res://Scenes/CheckpointEnd.gd" id="20_b04to"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4osom"]
 texture = ExtResource("8_a4uy3")
@@ -594,30 +596,19 @@ collision_animatable = true
 format = 2
 layer_0/tile_data = PackedInt32Array(65554, 65537, 0, -262088, 131073, 0, -262083, 131073, 0, -262037, 65537, 0, 131065, 131073, 0, 65536, 131073, 0, -524245, 131073, 0)
 
-[node name="Checkpoint" type="Area2D" parent="."]
+[node name="Checkpoint1" type="Area2D" parent="."]
 position = Vector2(354, 25)
 script = ExtResource("18_1onks")
 
-[node name="Sprite2D" type="Sprite2D" parent="Checkpoint"]
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoint1"]
 texture = ExtResource("19_4lnf7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_6750f")
-
-[node name="Checkpoint3" type="Area2D" parent="."]
-position = Vector2(226, -39)
-script = ExtResource("18_1onks")
-
-[node name="Sprite2D" type="Sprite2D" parent="Checkpoint3"]
-texture = ExtResource("19_4lnf7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_6750f")
 
 [node name="Checkpoint2" type="Area2D" parent="."]
-position = Vector2(568, -135)
+position = Vector2(226, -39)
 script = ExtResource("18_1onks")
 
 [node name="Sprite2D" type="Sprite2D" parent="Checkpoint2"]
@@ -627,8 +618,55 @@ texture = ExtResource("19_4lnf7")
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_6750f")
 
+[node name="Checkpoint3" type="Area2D" parent="."]
+position = Vector2(568, -135)
+script = ExtResource("18_1onks")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoint3"]
+texture = ExtResource("19_4lnf7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint3"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_6750f")
+
+[node name="Checkpoint4Low" type="Area2D" parent="."]
+position = Vector2(1268, 25)
+script = ExtResource("18_1onks")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoint4Low"]
+texture = ExtResource("19_4lnf7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint4Low"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_6750f")
+
+[node name="Checkpoint4High" type="Area2D" parent="."]
+position = Vector2(1255, -215)
+script = ExtResource("18_1onks")
+
+[node name="Sprite2D" type="Sprite2D" parent="Checkpoint4High"]
+texture = ExtResource("19_4lnf7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint4High"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_6750f")
+
+[node name="CheckpointEnd" type="Area2D" parent="."]
+position = Vector2(1749, -55)
+script = ExtResource("20_b04to")
+
+[node name="Sprite2D" type="Sprite2D" parent="CheckpointEnd"]
+texture = ExtResource("20_2h8ya")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointEnd"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_6750f")
+
 [connection signal="body_entered" from="fall" to="fall" method="_on_body_entered"]
 [connection signal="body_entered" from="spikes" to="Player" method="_on_spikes_body_entered"]
-[connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
-[connection signal="body_entered" from="Checkpoint3" to="Checkpoint3" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint1" to="Checkpoint1" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoint2" to="Checkpoint2" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint3" to="Checkpoint3" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint4Low" to="Checkpoint4Low" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint4High" to="Checkpoint4High" method="_on_body_entered"]
+[connection signal="body_entered" from="CheckpointEnd" to="CheckpointEnd" method="_on_body_entered"]
