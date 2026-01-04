@@ -30,7 +30,7 @@ func _physics_process(delta):
 		if Global.jump == 1: 
 			sprite.flip_h = true 
 			velocity.y = jumpHeight
-			velocity.x = maxSpeed * 0.8
+			velocity.x = maxSpeed * 1.8
 			Global.jump = 0
 		elif Global.jump == 2:
 			sprite.flip_h = false
@@ -57,11 +57,10 @@ func _physics_process(delta):
 
 	for i in get_slide_collision_count():
 		var colision = get_slide_collision(i)
-		var objeto_tocado = colision.get_collider()
-		
-		if objeto_tocado is TileMap:
-			var tile_pos = objeto_tocado.local_to_map(objeto_tocado.to_local(colision.get_position()))
-			var data = objeto_tocado.get_cell_tile_data(0, tile_pos)
-			
-			if data and data.get_custom_data("mortal"):
-				get_tree().reload_current_scene()
+		var objeto = colision.get_collider()
+		if objeto is TileMap:
+			var coords = objeto.local_to_map(objeto.to_local(colision.get_position()))
+			var data = objeto.get_cell_tile_data(0, coords)
+			if data:
+				if data.get_custom_data_by_layer_id(0) == true:
+					get_tree().reload_current_scene()

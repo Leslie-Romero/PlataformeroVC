@@ -490,9 +490,6 @@ position = Vector2(386, 7)
 [node name="Coin6" parent="." instance=ExtResource("11_ptao8")]
 position = Vector2(-28, -7)
 
-[node name="Coin7" parent="." instance=ExtResource("11_ptao8")]
-position = Vector2(-143, 25)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("12_ifu3x")
 
@@ -590,7 +587,7 @@ position = Vector2(1547, -35)
 tile_set = SubResource("TileSet_8pojv")
 collision_animatable = true
 format = 2
-layer_0/tile_data = PackedInt32Array(-65528, 65537, 0, 65554, 65537, 0, 65558, 65537, 0, -589789, 65537, 0, -720850, 65537, 0, -720845, 65537, 0, -524243, 131073, 0, -524240, 131073, 0, -262088, 131073, 0, -262083, 131073, 0, 65600, 131073, 0, 65607, 1, 0, 65613, 65537, 0, -262044, 131073, 0, -262040, 65537, 0, -262037, 65537, 0, -720839, 131073, 0, -786371, 131073, 0, -917432, 131073, 0, -917420, 131073, 0, -917417, 131073, 0, -917414, 131073, 0, -917411, 131073, 0, -917408, 131073, 0, 65538, 131073, 0)
+layer_0/tile_data = PackedInt32Array(65554, 65537, 0, -262088, 131073, 0, -262083, 131073, 0, -262037, 65537, 0, 131065, 131073, 0, 65536, 131073, 0, -524245, 131073, 0)
 
 [connection signal="body_entered" from="fall" to="fall" method="_on_body_entered"]
 [connection signal="body_entered" from="spikes" to="Player" method="_on_spikes_body_entered"]
