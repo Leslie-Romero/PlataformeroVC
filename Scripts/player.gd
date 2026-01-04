@@ -9,9 +9,7 @@ const gravity = 15
 @onready var animationPlayer = $AnimationPlayer 
 
 func _physics_process(delta):
-		
 	velocity.y += gravity
-	
 	var friction = false
 	
 	if Global.move_x == 0:
@@ -19,31 +17,26 @@ func _physics_process(delta):
 		animationPlayer.play("Walk")
 		velocity.x = min(velocity.x + moveSpeed, maxSpeed)
 		Global.move_x = 2
-		
 	elif Global.move_x == 1:
 		sprite.flip_h = false 
 		animationPlayer.play("Walk")
 		velocity.x = max(velocity.x - moveSpeed, -maxSpeed)
 		Global.move_x = 2
-		
 	else:
 		animationPlayer.play("Idle")
 		friction = true
 	
 	if is_on_floor():
-		# Derecha
 		if Global.jump == 1: 
 			sprite.flip_h = true 
 			velocity.y = jumpHeight
 			velocity.x = maxSpeed * 0.8
 			Global.jump = 0
-		# Izquierda
 		elif Global.jump == 2:
 			sprite.flip_h = false
 			velocity.y = jumpHeight
 			velocity.x = -maxSpeed * 0.8
 			Global.jump = 0
-			
 		if friction:
 			velocity.x = lerp(velocity.x, 0.0, 0.2) 
 	else:
@@ -52,7 +45,6 @@ func _physics_process(delta):
 	
 	if Global.attack == 1:
 		print("Atacando")
-		#animationPlayer.play("Attack")
 		Global.attack = 0
 	
 	if Global.slide == 1:
@@ -60,9 +52,16 @@ func _physics_process(delta):
 		animationPlayer.play("Slide")
 		Global.slide = 0
 	
+	
 	move_and_slide()
 
-
-func _on_spikes_body_entered(body):
-	if body.get_name() == "Player":
-		get_tree().reload_current_scene()
+	for i in get_slide_collision_count():
+		var colision = get_slide_collision(i)
+		var objeto_tocado = colision.get_collider()
+		
+		if objeto_tocado is TileMap:
+			var tile_pos = objeto_tocado.local_to_map(objeto_tocado.to_local(colision.get_position()))
+			var data = objeto_tocado.get_cell_tile_data(0, tile_pos)
+			
+			if data and data.get_custom_data("mortal"):
+				get_tree().reload_current_scene()
